@@ -101,7 +101,7 @@ namespace Gestione_Corretta_Separatori_Altezze_CSV
         public static void SalvaCsv_ComeAmericano(string percorso, List<Persona> lista)
         {
             var culturaUSA = CultureInfo.GetCultureInfo("en-US");
-            char sepElenco = culturaUSA.TextInfo.ListSeparator[0]; // Sarà ','
+            string sepElenco = culturaUSA.TextInfo.ListSeparator; // Sarà ","
 
             // 1. Prepariamo un elenco di stringhe da scrivere
             var righe = new List<string>();
@@ -127,7 +127,7 @@ namespace Gestione_Corretta_Separatori_Altezze_CSV
         /// </summary>
         public static void CaricaCsv_ComeItaliano_PROBLEMA(string percorso)
         {
-            char sepElencoItaliano = CultureInfo.CurrentCulture.TextInfo.ListSeparator[0]; // Sarà ';'
+            string sepElencoItaliano = CultureInfo.CurrentCulture.TextInfo.ListSeparator; // Sarà ";"
 
             string[] righe = File.ReadAllLines(percorso);
             string rigaDati = righe[1]; // Leggiamo la prima riga di dati: "Mario,Rossi,1.80"
@@ -164,7 +164,7 @@ namespace Gestione_Corretta_Separatori_Altezze_CSV
         public static void SalvaCsv_ComeItaliano(string percorso, List<Persona> lista)
         {
             var culturaCorrente = CultureInfo.CurrentCulture;
-            char sepElenco = culturaCorrente.TextInfo.ListSeparator[0]; // Sarà ';'
+            string sepElenco = culturaCorrente.TextInfo.ListSeparator; // Sarà ";"
 
             var righe = new List<string>();
             righe.Add($"Nome{sepElenco}Cognome{sepElenco}Altezza");
@@ -187,7 +187,7 @@ namespace Gestione_Corretta_Separatori_Altezze_CSV
         {
             var personeCaricate = new List<Persona>();
             var culturaCorrente = CultureInfo.CurrentCulture;
-            char sepElenco = culturaCorrente.TextInfo.ListSeparator[0]; // Sarà ';'
+            string  sepElenco = culturaCorrente.TextInfo.ListSeparator; // Sarà ";"
 
             // 1. Legge tutte le righe in un colpo solo
             var righe = File.ReadAllLines(percorso);
