@@ -18,13 +18,22 @@ namespace Gestione_Corretta_Separatori_Altezze_CSV
             new Persona("Anna", "Verdi", 1.65f)
         };
 
-        private static string percorsoFile = "anagrafica.csv";
+        // 1. Prendi la cartella base (HOME, C:\Users\TuoNome)
+        private static string cartellaBase = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
+        // 2. Definisci il nome della tua sottocartella
+        private static string nomeSottocartella = "Archivio Dati";
+
+        // 3. Crea il percorso completo della sottocartella
+        private static string percorsoSottocartella = Path.Combine(cartellaBase, nomeSottocartella);
+
+        // 4. Combina il percorso della sottocartella con il nome del file
+        private static string percorsoFile = Path.Combine(percorsoSottocartella, "anagrafica.csv");
 
         public static void Main(string[] args)
         {
-            // --- IMPOSTAZIONE: SIMULIAMO UN PC ITALIANO ---
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("it-IT");
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("it-IT");
+            // Se la cartella non esiste, creala 
+            Directory.CreateDirectory(percorsoSottocartella);
 
             Console.WriteLine($"Simulazione avviata. Il nostro PC è ITALIANO ('it-IT').");
             Console.WriteLine($"Separatore Elenco atteso: '{CultureInfo.CurrentCulture.TextInfo.ListSeparator}'");
